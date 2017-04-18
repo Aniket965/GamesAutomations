@@ -9,6 +9,8 @@ np.set_printoptions(threshold=np.nan)
 def screen_record(): 
     last_time = time.time()
     while(True): 
+        # only 4 tiles image is captured at a time
+        # which is then processesed
         frame =  np.array(ImageGrab.grab(bbox=(10,290,191,303)))
         last_time = time.time()
         frame = process_frames(frame)
@@ -21,7 +23,7 @@ def screen_record():
             break
 
 
-# process image into simplyfied input
+# process image into simplyfied input (grayed image)
 def process_frames(frame):
     Original_frame = frame
     # convert into gray
@@ -29,7 +31,8 @@ def process_frames(frame):
     return processed_frame
 
 
-# finds which key to press
+# finds which key to press (numbers here show pixels which is to be checked if there is black tile)
+# game ran using nox player in top(0,0) cordinate
 def Find_key(frame):
    
     if(frame[10][30] < 150):
